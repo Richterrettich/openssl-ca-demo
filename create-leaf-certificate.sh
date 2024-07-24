@@ -25,8 +25,7 @@ mkdir -p $leaf_dir
 openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out ${leaf_key_path}
 
 
-# generate a signing request with the intermediate ca key
-# Do note the pathlen basic constraint. It restricts the CA to only issue leaf certificates and no CA certificates: https://www.rfc-editor.org/rfc/rfc5280#section-4.2.1.9
+# generate a signing request with the leaf key
 openssl req -new -key ${leaf_key_path} \
     -out ${leaf_csr_path} \
     -subj "/CN=${2}" \

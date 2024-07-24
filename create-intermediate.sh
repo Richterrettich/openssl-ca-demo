@@ -24,6 +24,8 @@ openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out ${intermedia
 
 # generate a signing request with the intermediate ca key
 # Do note the pathlen basic constraint. It restricts the CA to only issue leaf certificates and no CA certificates: https://www.rfc-editor.org/rfc/rfc5280#section-4.2.1.9
+# Also take a look at the nameConstraints extension. This extension limits the domain for leaf certificates. 
+# In this case, the intermediate CA certificate can only issue certificates for the domain "proxy.myhospital.com" 
 openssl req -new -key ${intermediate_key_path} \
     -out ${intermediate_csr_path} \
     -subj '/CN=my-company-ca-intermediate' \
