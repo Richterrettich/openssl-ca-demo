@@ -29,7 +29,7 @@ openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out ${intermedia
 openssl req -new -key ${intermediate_key_path} \
     -out ${intermediate_csr_path} \
     -subj '/CN=my-company-ca-intermediate' \
-    -addext 'basicConstraints=critical,CA:true,pathlen:1' \
+    -addext 'basicConstraints=critical,CA:true,pathlen:0' \
     -addext 'keyUsage=digitalSignature,keyCertSign' \
     -addext 'nameConstraints=critical,permitted;DNS:proxy.myhospital.com'
 
